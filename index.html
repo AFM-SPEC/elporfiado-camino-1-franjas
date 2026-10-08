@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Porfiado · Franjas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500;1,6..72,600&family=Libre+Caslon+Text:wght@400&display=swap">
+<style>
+/* Camino 1: la portada como sucesión de franjas. Cuatro fondos, nada más:
+   papel, celeste pleno, negro y punzó. Cada franja tiene su propio formato. */
+:root{
+  --papel:#f5f2e8; --papel-hondo:#e9e3d2; --tinta:#0f0f0f; --gris:#4d4a43; --filete:#d3ccb9;
+  --celeste:#76aada; --celeste-osc:#1f4f7a; --punzo:#b43232; --blanco:#fff;
+  --display:"Newsreader",Georgia,serif; --copete:"Libre Caslon Text",Georgia,serif; --sans:"Archivo",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);font:16px/1.5 var(--copete)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+a:hover .tit{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:20px}
+.kicker{font:700 .68rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.tit{font-family:var(--display);font-weight:600;line-height:1.1;text-wrap:balance}
+.baj{line-height:1.5;opacity:.85}
+.hora{font:500 .72rem/1 var(--sans);letter-spacing:.04em;opacity:.7;font-variant-numeric:tabular-nums}
+.foto{width:100%;aspect-ratio:3/2;object-fit:cover}
+
+/* cabecera compacta */
+.cab{border-bottom:1px solid var(--tinta)}
+.cab .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:14px}
+.cab .fecha{font:500 .7rem/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.cab img{width:min(330px,60vw)}
+.cab .acc{justify-self:end;display:flex;gap:10px}
+.btn{font:700 .68rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid var(--tinta)}
+.btn.fill{background:var(--tinta);color:var(--papel)}
+nav.sec{border-bottom:1px solid var(--tinta);position:sticky;top:0;background:var(--papel);z-index:4}
+nav.sec ul{list-style:none;margin:0 auto;padding:0 20px;max-width:1200px;display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+nav.sec a{display:block;padding:12px 0;font:700 .74rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;border-bottom:3px solid transparent}
+nav.sec a[data-b="er"]{border-color:var(--celeste)}
+nav.sec a[data-b="cu"]{border-color:var(--tinta)}
+
+/* franjas */
+.franja{padding-block:44px}
+.franja-h{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:26px}
+.franja-h h2{font:700 clamp(2.2rem,5vw,3.6rem)/.95 var(--display);letter-spacing:-.02em}
+.franja-h a{font:700 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:3px}
+
+/* 1. apertura (papel) */
+.ap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:36px;align-items:start}
+.ap .lead{display:grid;gap:12px}
+.ap .lead .foto{aspect-ratio:16/9}
+.ap .lead .tit{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700}
+.ap .lead .kicker{color:var(--celeste-osc)}
+.ap aside{display:grid;gap:18px}
+.ap .sec2{display:grid;grid-template-columns:120px 1fr;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--filete)}
+.ap .sec2 .foto{aspect-ratio:1}
+.ap .sec2 .tit{font-size:1.15rem}
+.ultimo h3{font:700 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--punzo);margin-bottom:6px}
+.ultimo a{display:grid;grid-template-columns:48px 1fr;gap:8px;padding-block:10px;border-top:1px solid var(--filete)}
+.ultimo .tit{font-size:.98rem;font-weight:500}
+
+/* 2. Entre Ríos (celeste pleno) */
+.f-er{background:var(--celeste);color:var(--tinta)}
+.f-er .franja-h h2 span{display:block;font:italic 500 1.1rem/1.2 var(--display);letter-spacing:0;margin-top:8px}
+.er{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:36px}
+.er .lead{display:grid;gap:12px}
+.er .lead .tit{font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:700}
+.er .grid4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 24px;align-content:start}
+.er .grid4 a{display:grid;gap:8px;align-content:start}
+.er .grid4 .tit{font-size:1.08rem}
+.er .pol{grid-column:1/-1;display:grid;grid-template-columns:130px repeat(3,minmax(0,1fr));gap:24px;border-top:2px solid var(--tinta);padding-top:18px;margin-top:10px}
+.er .pol h3{font:700 .7rem/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;max-width:9ch}
+.er .pol .tit{font-size:1.05rem}
+
+/* 3. país (papel) */
+.pais{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,4fr) minmax(0,4fr);gap:32px}
+.col h3.lbl{font:700 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--punzo);border-bottom:2px solid var(--tinta);padding-bottom:8px;margin-bottom:14px}
+.col .lead{display:grid;gap:10px;padding-bottom:16px}
+.col .lead .tit{font-size:1.45rem}
+.col .item{display:grid;gap:6px;padding-block:12px;border-top:1px solid var(--filete)}
+.col .item .tit{font-size:1.05rem}
+.dolar{border-top:2px solid var(--tinta)}
+.dolar .fila{display:grid;grid-template-columns:1fr auto;align-items:baseline;padding-block:12px;border-bottom:1px solid var(--filete)}
+.dolar .fila span:first-child{font:600 .75rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.dolar .fila b{font:700 1.9rem/1 var(--display);font-variant-numeric:tabular-nums}
+.dolar small{display:block;font:400 .7rem var(--sans);color:var(--gris);margin-top:10px}
+
+/* 4. cultura (negro) */
+.f-cu{background:var(--tinta);color:var(--papel);padding-block:0}
+.cu{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:stretch}
+.cu .foto{height:100%;aspect-ratio:auto;min-height:420px}
+.cu .txt{padding:48px 20px 48px 44px;display:grid;gap:16px;align-content:center}
+.cu .kicker{color:var(--celeste)}
+.cu .tit{font-size:clamp(1.9rem,3.4vw,2.8rem);font-style:italic}
+.cu .baj{color:#d7d1c0;opacity:1;font-size:1.05rem}
+.cu .leer{justify-self:start;font:700 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--celeste);border-bottom:1px solid var(--celeste);padding-bottom:4px}
+
+/* 5. región y deportes (papel hondo) */
+.f-rd{background:var(--papel-hondo)}
+.rd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.rd a{display:grid;gap:8px;align-content:start}
+.rd .tit{font-size:1.1rem}
+.rd .solo{border-top:4px solid var(--punzo);padding-top:12px}
+.rd .solo .tit{font-size:1.4rem}
+.rd .grupo{font:700 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;grid-column:span 2;border-bottom:2px solid var(--tinta);padding-bottom:8px}
+
+/* 6. más leídas (papel) */
+.leidas ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;counter-reset:n}
+.leidas li{counter-increment:n;display:grid;gap:8px;align-content:start}
+.leidas li::before{content:counter(n);font:700 3.2rem/1 var(--display);color:var(--punzo)}
+.leidas .tit{font-size:1.02rem}
+
+/* 7. boletín (punzó) */
+.f-bo{background:var(--punzo);color:var(--blanco)}
+.bo{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:36px;align-items:center}
+.bo h2{font:700 clamp(2rem,4vw,3rem)/1 var(--display)}
+.bo p{margin-top:10px;font-size:1.05rem}
+.bo form{display:flex;gap:8px;flex-wrap:wrap}
+.bo input{flex:1 1 220px;min-width:0;padding:14px;border:0;font:400 1rem var(--sans)}
+.bo button{padding:14px 20px;border:0;background:var(--tinta);color:var(--blanco);font:700 .74rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.bo .ok{font:600 .95rem var(--sans)}
+footer{background:var(--tinta);color:#bbb4a2;font:500 .7rem/1.6 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-block:28px}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 22px}
+
+@media (max-width:900px){
+  .ap,.er,.pais,.cu,.bo{grid-template-columns:minmax(0,1fr)}
+  .er .pol{grid-template-columns:minmax(0,1fr)}
+  .rd{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .leidas ol{grid-template-columns:minmax(0,1fr);gap:14px}
+  .leidas li{grid-template-columns:48px 1fr;align-items:start}
+  .leidas li::before{font-size:2rem}
+  .cu .foto{min-height:0;aspect-ratio:4/3}
+  .cu .txt{padding:28px 20px 40px}
+}
+@media (max-width:560px){
+  .cab .wrap{grid-template-columns:1fr auto}
+  .cab .fecha{display:none}
+  .cab .acc .btn:not(.fill){display:none}
+  .er .grid4,.rd{grid-template-columns:minmax(0,1fr)}
+  .rd .grupo{grid-column:auto}
+  .franja{padding-block:32px}
+}
+</style>
+</head>
+<body>
+<div style="background:#ffd84d;color:#111;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:7px 16px;position:relative;z-index:50">Prototipo de rediseño · Camino 1 · Franjas · No es el sitio oficial de El Porfiado. Titulares de elporfiado.com; fotos ilustrativas de Unsplash, sin relación con las notas.</div>
+
+<header class="cab">
+  <div class="wrap">
+    <span class="fecha">Paraná · viernes 25 de setiembre de 2026</span>
+    <a href="#"><img src="img/marca-horizontal.webp" alt="El Porfiado" width="1400" height="183"></a>
+    <div class="acc"><a class="btn" href="#">Buscar</a><a class="btn fill" href="#boletin">Boletín</a></div>
+  </div>
+</header>
+<nav class="sec" aria-label="Secciones"><ul>
+  <li><a data-b="er" href="#er">Entre Ríos</a></li><li><a href="#pais">Política</a></li><li><a href="#pais">Economía</a></li>
+  <li><a data-b="cu" href="#cultura">Cultura</a></li><li><a href="#region">Federal</a></li><li><a href="#region">Deportes</a></li>
+</ul></nav>
+
+<!-- 1 · APERTURA -->
+<section class="franja"><div class="wrap ap">
+  <a class="lead" href="https://elporfiado.com/noticia/michel-marclay-y-bahl-piden-a-frigerio-que-gestione-los-fondos-que-nacion-deberia-destinar-ante-riesgo-de-inundaciones">
+    <img class="foto" src="img/p1015.jpg" alt="Foto ilustrativa">
+    <span class="kicker">Entre Ríos · El Niño</span>
+    <h1 class="tit">Michel, Marclay y Bahl piden a Frigerio fondos de Nación ante el riesgo de inundaciones</h1>
+    <p class="baj">Los legisladores nacionales del peronismo advirtieron por el posible impacto del fenómeno El Niño en Entre Ríos.</p>
+  </a>
+  <aside>
+    <a class="sec2" href="https://elporfiado.com/noticia/el-senado-le-dio-sancion-definitiva-al-nuevo-regimen-de-consorcios-camineros"><img class="foto" src="img/p1036.jpg" alt="Foto ilustrativa"><div><span class="kicker" style="color:var(--celeste-osc)">Legislatura</span><h2 class="tit">El Senado sancionó el nuevo régimen de consorcios camineros</h2></div></a>
+    <a class="sec2" href="https://elporfiado.com/noticia/javier-milei-hablara-el-jueves-por-la-noche-en-cadena-nacional-por-el-tema-malvinas"><img class="foto" src="img/p1018.jpg" alt="Foto ilustrativa"><div><span class="kicker" style="color:var(--punzo)">Política</span><h2 class="tit">Milei hablará el jueves en cadena nacional por Malvinas</h2></div></a>
+    <div class="ultimo">
+      <h3>Lo último</h3>
+      <a href="https://elporfiado.com/noticia/los-senadores-cobraran-desde-enero-mas-de"><span class="hora">12:35</span><span class="tit">Los senadores cobrarán más desde enero</span></a>
+      <a href="https://elporfiado.com/noticia/preocupacion-en-cuba-por-el-grave-estado-de-salud-de-raul-castro"><span class="hora">12:34</span><span class="tit">Preocupación en Cuba por la salud de Raúl Castro</span></a>
+      <a href="https://elporfiado.com/noticia/fentanilo-contaminado-procesaron-a-dos-ex-funcionarias"><span class="hora">12:34</span><span class="tit">Fentanilo contaminado: procesaron a dos ex funcionarias</span></a>
+    </div>
+  </aside>
+</div></section>
+
+<!-- 2 · ENTRE RÍOS -->
+<section class="franja f-er" id="er"><div class="wrap">
+  <div class="franja-h"><h2>Entre Ríos<span>La provincia, de costa a costa</span></h2><a href="https://elporfiado.com/categoria/entre-rios">Toda la provincia</a></div>
+  <div class="er">
+    <a class="lead" href="https://elporfiado.com/noticia/frigerio-recibio-a-representantes-de-cra-y-farer-por-los-caminos-rurales">
+      <img class="foto" src="img/p1043.jpg" alt="Foto ilustrativa">
+      <span class="kicker">Campo</span>
+      <h3 class="tit">Frigerio recibió a CRA y Farer por el estado de los caminos rurales</h3>
+    </a>
+    <div class="grid4">
+      <a href="https://elporfiado.com/noticia/se-extiende-durante-todo-septiembre-la-campana-de-vacunacion-contra-el-virus-sincicial-respiratorio"><img class="foto" src="img/p1025.jpg" alt="Foto ilustrativa"><span class="kicker">Salud</span><span class="tit">Se extiende hasta el 30 de septiembre la vacunación contra el VSR</span></a>
+      <a href="https://elporfiado.com/noticia/frigerio-entrego-una-nueva-ambulancia-al-hospital-de-viale"><img class="foto" src="img/p1039.jpg" alt="Foto ilustrativa"><span class="kicker">Viale</span><span class="tit">Una ambulancia cero kilómetro para el hospital Castilla Mira</span></a>
+      <a href="https://elporfiado.com/noticia/comienza-el-proximo-miercoles-el-cronograma-de-pagos-para-la-administracion-publica-provincial"><img class="foto" src="img/p1044.jpg" alt="Foto ilustrativa"><span class="kicker">Estatales</span><span class="tit">Arranca el cronograma de pagos de la administración pública</span></a>
+      <a href="https://elporfiado.com/noticia/el-quirofano-movil-estara-en-distintos-barrios-de-la-ciudad-durante-septiembre"><img class="foto" src="img/p1050.jpg" alt="Foto ilustrativa"><span class="kicker">Paraná</span><span class="tit">El quirófano móvil recorre los barrios durante septiembre</span></a>
+    </div>
+    <div class="pol">
+      <h3>Política entrerriana</h3>
+      <a href="https://elporfiado.com/noticia/tension-rebelion-de-bases-y-controversias-financieras"><span class="tit">Tensión y rebelión de bases en el radicalismo entrerriano</span></a>
+      <a href="https://elporfiado.com/noticia/resignacion-y-atrincheramiento-en-la-oposicion-frente"><span class="tit">Resignación y atrincheramiento en la oposición ante las elecciones</span></a>
+      <a href="https://elporfiado.com/noticia/por-primera-vez-en-40-anos-soever"><span class="tit">Por primera vez en 40 años, SOEVER para contra los consorcios camineros</span></a>
+    </div>
+  </div>
+</div></section>
+
+<!-- 3 · PAÍS: política, economía, dólar -->
+<section class="franja" id="pais"><div class="wrap pais">
+  <div class="col">
+    <h3 class="lbl">Política</h3>
+    <a class="lead" href="https://elporfiado.com/noticia/javier-milei-declaro-bienes-y-depositos-por"><img class="foto" src="img/p1062.jpg" alt="Foto ilustrativa"><span class="tit">Milei declaró bienes: su patrimonio creció casi $90 millones</span></a>
+    <a class="item" href="https://elporfiado.com/noticia/la-reforma-politica-que-impulsa-el-gobierno"><span class="tit">El Gobierno busca suspender las PASO</span></a>
+    <a class="item" href="https://elporfiado.com/noticia/lijo-solicito-al-gobierno-que-brinde-informacion"><span class="tit">Lijo pidió información sobre los fondos para rutas nacionales</span></a>
+  </div>
+  <div class="col">
+    <h3 class="lbl">Economía</h3>
+    <a class="lead" href="https://elporfiado.com/noticia/el-gobierno-fijo-aumentos-escalonados-para-el-salario-minimo-hasta-abril-de-2027"><img class="foto" src="img/p1067.jpg" alt="Foto ilustrativa"><span class="tit">Aumentos escalonados del salario mínimo hasta abril de 2027</span></a>
+    <a class="item" href="https://elporfiado.com/noticia/con-milei-ausente-la-uia-celebrara-el-dia-de-la-industria-en-un-escenario-negativo"><span class="tit">La UIA celebra el Día de la Industria con fábricas paradas</span></a>
+    <a class="item" href="https://elporfiado.com/noticia/docentes-universitarios-rechazaron-la-paritaria-que-ofrecio-el-gobierno-y-pararan-este-miercoles"><span class="tit">Docentes universitarios rechazaron la paritaria y paran</span></a>
+  </div>
+  <div class="col">
+    <h3 class="lbl">Dólar hoy</h3>
+    <div class="dolar">
+      <div class="fila"><span>Oficial</span><b>$1.545</b></div>
+      <div class="fila"><span>Blue</span><b>$1.560</b></div>
+      <div class="fila"><span>Bolsa</span><b>$1.557</b></div>
+      <div class="fila"><span>CCL</span><b>$1.617</b></div>
+      <div class="fila"><span>Mayorista</span><b>$1.526</b></div>
+      <small>Valores de venta. Actualizado 15:35.</small>
+    </div>
+  </div>
+</div></section>
+
+<!-- 4 · CULTURA -->
+<section class="franja f-cu" id="cultura"><div class="cu">
+  <img class="foto" src="img/p1069.jpg" alt="Foto ilustrativa">
+  <div class="txt">
+    <span class="kicker">Cultura · Rock nacional</span>
+    <h2 class="tit">Cincuenta años de “El jardín de los presentes”, el disco de Invisible que cambió el rock argentino</h2>
+    <p class="baj">Hace 50 años, en los primeros meses de la última dictadura, Invisible publicaba un álbum que todavía se escucha como nuevo.</p>
+    <a class="leer" href="https://elporfiado.com/noticia/se-cumplen-50-anos-de-el-jardin-de-los-presentes-el-disco-de-invisible-que-cambio-el-mapa-del-rock-argentino-para-siempre">Leer la nota</a>
+  </div>
+</div></section>
+
+<!-- 5 · REGIÓN Y DEPORTES -->
+<section class="franja f-rd" id="region"><div class="wrap rd">
+  <span class="grupo">Federal</span><span class="grupo">Deportes</span>
+  <a href="https://elporfiado.com/noticia/gesto-de-pullaro-a-milei-el-dolar-dejo-de-ser-un-problema-en-la-argentina-si-no-vuelve-al-populismo-corrupto"><img class="foto" src="img/p1074.jpg" alt="Foto ilustrativa"><span class="kicker" style="color:var(--punzo)">Santa Fe</span><span class="tit">Pullaro a Milei: “El dólar dejó de ser un problema”</span></a>
+  <a href="https://elporfiado.com/noticia/balance-la-economia-santafesina-sufrio-una-leve-baja-en-el-primer-trimestre-del-ano"><img class="foto" src="img/p1080.jpg" alt="Foto ilustrativa"><span class="kicker" style="color:var(--punzo)">Santa Fe</span><span class="tit">Leve baja de la economía santafesina</span></a>
+  <a href="https://elporfiado.com/noticia/bomba-de-pullaro-hay-una-posibilidad-de-que-messi-venga-a-jugar-a-rosario"><img class="foto" src="img/p1084.jpg" alt="Foto ilustrativa"><span class="kicker" style="color:var(--punzo)">Fútbol</span><span class="tit">Pullaro: “Hay una posibilidad de que Messi venga a jugar a Rosario”</span></a>
+  <a class="solo" href="https://elporfiado.com/noticia/la-carta-completa-con-la-que-messi-anuncio-su-retiro-de-la-seleccion"><span class="kicker" style="color:var(--punzo)">Selección</span><span class="tit">La carta completa con la que Messi anunció su retiro de la Selección</span></a>
+</div></section>
+
+<!-- 6 · MÁS LEÍDAS -->
+<section class="franja leidas"><div class="wrap">
+  <div class="franja-h"><h2>Más leídas</h2></div>
+  <ol>
+    <li><a href="https://elporfiado.com/noticia/frigerio-entrego-una-nueva-ambulancia-al-hospital-de-viale"><span class="tit">Frigerio entregó una nueva ambulancia al hospital de Viale</span></a></li>
+    <li><a href="https://elporfiado.com/noticia/michel-marclay-y-bahl-piden-a-frigerio-que-gestione-los-fondos-que-nacion-deberia-destinar-ante-riesgo-de-inundaciones"><span class="tit">Piden a Frigerio fondos ante el riesgo de inundaciones</span></a></li>
+    <li><a href="https://elporfiado.com/noticia/mierdas-humanas-milei-anuncio-una-cadena-nacional-y-estallo"><span class="tit">“Mierdas humanas”: Milei anunció una cadena nacional y estalló</span></a></li>
+    <li><a href="https://elporfiado.com/noticia/el-quirofano-movil-estara-en-distintos-barrios-de-la-ciudad-durante-septiembre"><span class="tit">El quirófano móvil estará en distintos barrios</span></a></li>
+    <li><a href="https://elporfiado.com/noticia/se-cumplen-50-anos-de-el-jardin-de-los-presentes-el-disco-de-invisible-que-cambio-el-mapa-del-rock-argentino-para-siempre"><span class="tit">50 años de “El jardín de los presentes”</span></a></li>
+  </ol>
+</div></section>
+
+<!-- 7 · BOLETÍN -->
+<section class="franja f-bo" id="boletin"><div class="wrap bo">
+  <div><h2>El boletín de los jueves</h2><p>Cuatro notas por semana, sin extraordinarios. La suscripción es gratuita.</p></div>
+  <div>
+    <form id="f"><label for="em" style="position:absolute;left:-9999px">Correo electrónico</label><input id="em" type="email" placeholder="Tu correo electrónico" required><button>Suscribirme</button></form>
+    <p class="ok" id="ok" hidden>Listo. El jueves te llega el primer boletín.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>El Porfiado · Periodismo federal · Paraná, Entre Ríos</span><nav><a href="#">Contacto</a><a href="#">Sobre nosotros</a><a href="#">Privacidad</a></nav></div></footer>
+<script>document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();e.target.hidden=true;document.getElementById('ok').hidden=false;});</script>
+</body>
+</html>
